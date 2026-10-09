@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Button } from "@/components/ui/button";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -45,8 +46,8 @@ export function SubscribeForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="w-full">
-      <h2 className="font-display text-xl uppercase sm:text-2xl">Be the first to know</h2>
-      <div className="mt-4 flex flex-col border border-foreground sm:flex-row">
+      <h2 className="font-mono-brand text-sm font-bold uppercase">Be the first to know</h2>
+      <div className="subscribe-row mt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-3">
         <label htmlFor="email" className="sr-only">Email address</label>
         <input
           id="email"
@@ -55,24 +56,25 @@ export function SubscribeForm() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Your email address"
+          placeholder="Enter your email address"
           aria-invalid={status.kind === "error"}
           aria-describedby="form-status"
-          className="min-w-0 flex-1 bg-card px-4 py-3 text-base outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          className="pixel-input min-w-0 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring"
         />
-        <button
+        <Button
+          variant="arcade"
           type="submit"
           disabled={status.kind === "loading"}
-          className="font-mono-brand bg-primary px-6 py-3 text-sm font-medium uppercase tracking-[0.15em] text-primary-foreground transition-colors hover:bg-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60"
+          className="h-11 shrink-0 rounded-none px-5 text-sm uppercase"
         >
           {status.kind === "loading" ? "Sending…" : "Notify me →"}
-        </button>
+        </Button>
       </div>
-      <label className="mt-3 flex cursor-pointer items-start gap-2 text-xs text-muted-foreground">
+      <label className="mt-3 flex cursor-pointer items-start gap-2 text-[11px] text-foreground">
         <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 accent-brand-red" />
         Get the latest updates, speaker announcements and event news.
       </label>
-      <p id="form-status" role="status" aria-live="polite" className={`mt-2 min-h-5 text-sm ${tone}`}>
+      <p id="form-status" role="status" aria-live="polite" className={`mt-1 text-xs ${tone}`}>
         {status.msg}
       </p>
     </form>

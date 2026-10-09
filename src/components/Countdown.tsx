@@ -43,13 +43,13 @@ export function Countdown() {
   ];
 
   return (
-    <div className="grid grid-cols-4 border border-foreground/80" role="timer" aria-label="Countdown to IndiaJoy 2026">
+    <div className="countdown-grid grid grid-cols-4 gap-2" role="timer" aria-label="Countdown to IndiaJoy 2026">
       {units.map(([label, v], i) => (
-        <div key={label} className={`px-2 py-4 text-center sm:px-4 ${i ? "border-l border-foreground/80" : ""}`}>
-          <div className="font-display text-3xl tabular-nums sm:text-5xl">
+        <div key={label} className={`timer-panel timer-${i} px-1 py-3 text-center`}>
+          <div className="font-display text-2xl tabular-nums">
             {v === undefined ? "--" : String(v).padStart(2, "0")}
           </div>
-          <div className="font-mono-brand mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
+          <div className="font-mono-brand mt-1 text-[10px] uppercase text-primary-foreground sm:text-xs">
             {label}
           </div>
         </div>

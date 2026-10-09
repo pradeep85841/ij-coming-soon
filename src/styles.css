@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face { font-family: "IndiaJoy Arcade"; src: url('/__l5e/assets-v1/3049ccbf-1b48-4d2e-b379-c3d6e3c8b68c/indiajoy-arcade.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
 /*
  * Design system definition.
  *
@@ -59,19 +61,21 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-display: "Press Start 2P", ui-monospace, monospace;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --color-brand-red: var(--brand-red);
   --color-brand-lavender: var(--brand-lavender);
   --color-brand-cyan: var(--brand-cyan);
   --color-brand-violet: var(--brand-violet);
+  --color-brand-orange: var(--brand-orange);
+  --color-game-dark: var(--game-dark);
   --color-grid: var(--grid);
 }
 
 :root {
   --radius: 0rem;
-  --background: oklch(0.965 0.018 85);
+  --background: oklch(0.945 0.021 85);
   --foreground: oklch(0.15 0.01 60);
   --card: oklch(0.98 0.012 85);
   --card-foreground: oklch(0.15 0.01 60);
@@ -90,10 +94,14 @@
   --border: oklch(0.15 0.01 60 / 0.18);
   --input: oklch(0.15 0.01 60 / 0.35);
   --ring: oklch(0.6 0.2 27);
-  --brand-red: oklch(0.6 0.2 27);
-  --brand-lavender: oklch(0.7 0.15 295);
-  --brand-cyan: oklch(0.62 0.12 210);
+  --brand-red: oklch(0.61 0.245 22);
+  --brand-lavender: oklch(0.61 0.24 300);
+  --brand-cyan: oklch(0.75 0.15 205);
   --brand-violet: oklch(0.5 0.2 290);
+  --brand-orange: oklch(0.78 0.15 58);
+  --game-dark: oklch(0.13 0.025 285);
+  --shadow-arcade: 3px 3px 0 var(--foreground);
+  --shadow-headline: -4px 5px 0 var(--brand-lavender), -7px 8px 0 var(--brand-violet), 4px 7px 0 var(--brand-red), 3px -3px 0 var(--brand-cyan);
   --grid: oklch(0.15 0.01 60 / 0.06);
   --chart-1: oklch(0.6 0.2 27);
   --chart-2: oklch(0.7 0.15 295);
@@ -117,10 +125,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background-image: radial-gradient(var(--grid) 0.45px, transparent 0.65px);
+    background-size: 4px 4px;
   }
 }
 
@@ -131,6 +137,102 @@
 @keyframes drift { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(6px,-8px) rotate(8deg); } }
 @utility animate-rise { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
 @utility animate-drift { animation: drift 9s ease-in-out infinite; }
+
+.festival-page { position: relative; max-width: 1536px; min-height: 100svh; margin: auto; padding: 24px 5.2% 28px; overflow: hidden; }
+.festival-header { position: relative; z-index: 2; margin-bottom: 29px; }
+.official-logo { width: 160px; height: auto; }
+.brand-descriptor { font-size: 10px; font-weight: 500; line-height: 1.35; }
+.event-header { position: relative; padding: 5px 14px; line-height: 1.4; }
+.event-header::before, .event-header::after { content: ''; position: absolute; width: 9px; height: 9px; border-color: var(--foreground); border-style: solid; }
+.event-header::before { left: -4px; top: -2px; border-width: 4px 0 0 4px; }
+.event-header::after { right: 0; bottom: 0; border-width: 0 4px 4px 0; border-color: var(--brand-red); }
+.festival-main { display: grid; grid-template-columns: minmax(0, 43%) minmax(0, 57%); position: relative; }
+.coming-content { position: relative; z-index: 1; }
+.story-tag { font-size: 14px; font-weight: 500; letter-spacing: 0; word-spacing: 8px; margin-bottom: 17px; }
+.coming-title { font-family: "IndiaJoy Arcade", var(--font-display); font-weight: 700; font-size: 96px; line-height: 0.96; margin: 0 0 18px; color: var(--foreground); text-shadow: var(--shadow-headline); }
+.coming-title span { display: block; }
+.loading-block { width: 70%; margin-bottom: 12px; }
+.loading-track { height: 20px; border: 3px solid var(--foreground); padding: 2px; margin-bottom: 3px; clip-path: polygon(4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px),0 4px); }
+.loading-fill {
+  --loading-blue: oklch(0.61 0.22 260);
+  --loading-magenta: oklch(0.65 0.25 335);
+  --loading-highlight: oklch(0.98 0.03 200);
+  --loading-glow: color-mix(in oklch, var(--loading-highlight) 40%, transparent);
+  position: relative; width: 58%; height: 100%; overflow: hidden;
+  background-image: repeating-linear-gradient(90deg, transparent 0 9px, var(--foreground) 9px 11px), repeating-linear-gradient(90deg, var(--brand-cyan) 0 22px, var(--loading-blue) 22px 44px, var(--brand-violet) 44px 66px, var(--loading-magenta) 66px 88px);
+  background-size: 11px 100%, 88px 100%;
+  animation: loading-sweep 2.5s linear infinite;
+}
+.loading-fill::before {
+  content: ''; position: absolute; top: 1px; bottom: 1px; left: 0; width: 100%;
+  background: repeating-linear-gradient(90deg, transparent 0 84px, var(--loading-highlight) 84px 88px);
+  background-size: 88px 100%; opacity: 0.8;
+  filter: drop-shadow(4px 0 1px var(--loading-glow));
+  animation: loading-sweep 2.5s linear infinite;
+}
+.loading-fill::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 80px, var(--loading-highlight) 80px 82px, transparent 82px 88px);
+  background-size: 88px 2px; background-repeat: repeat-x; opacity: 0;
+  animation: loading-sweep 2.5s linear infinite, loading-sparkle 2.5s steps(1, end) infinite;
+}
+.supporting-copy { font-size: 12px; line-height: 1.55; margin-bottom: 12px; }
+.event-scale { display: flex; align-items: baseline; gap: 9px; white-space: nowrap; font-family: var(--font-display); font-size: 16px; line-height: 1.7; margin-bottom: 4px; }
+.event-scale strong { font-size: 24px; font-weight: 400; }
+.event-location { display: flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 500; margin-bottom: 21px; }
+.event-location span { display: flex; align-items: center; gap: 7px; }
+.event-location svg { width: 19px; height: 19px; flex-shrink: 0; stroke-width: 2.3; }
+.timer-panel { background: var(--game-dark); border: 2px solid var(--foreground); outline: 2px solid var(--foreground); outline-offset: 2px; position: relative; box-shadow: inset 0 0 0 1px currentColor; clip-path: polygon(7px 0,calc(100% - 7px) 0,calc(100% - 7px) 3px,100% 3px,100% calc(100% - 7px),calc(100% - 4px) calc(100% - 7px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px),0 6px,7px 6px); }
+.timer-0 { color: var(--brand-red); border-color: var(--brand-red); }
+.timer-1 { color: var(--brand-cyan); border-color: var(--brand-cyan); }
+.timer-2 { color: var(--brand-orange); border-color: var(--brand-orange); }
+.timer-3 { color: var(--brand-lavender); border-color: var(--brand-lavender); }
+.subscription { margin-top: 21px; }
+.pixel-input { border: 2px solid var(--foreground); border-radius: 0; box-shadow: var(--shadow-arcade); }
+.arcade-button { border: 3px solid var(--foreground); box-shadow: var(--shadow-arcade),inset 0 0 0 1px var(--primary-foreground); transition: transform 120ms; }
+.arcade-button:hover { transform: translate(-1px,-1px); }
+.arcade-button:active { transform: translate(2px,2px); box-shadow: none; }
+.social-footer { display: flex; align-items: center; gap: 24px; margin-top: 19px; }
+.social-footer > span { border-right: 1px solid var(--foreground); padding: 9px 23px 9px 0; }
+.social-icon { border: 2px solid var(--foreground); border-radius: 0; width: 32px; height: 32px; padding: 4px; clip-path: polygon(5px 0,calc(100% - 5px) 0,100% 5px,100% calc(100% - 5px),calc(100% - 5px) 100%,5px 100%,0 calc(100% - 5px),0 5px); }
+.social-icon svg { width: 23px; height: 23px; }
+.game-art { position: relative; min-width: 0; }
+.pixel-world { position: absolute; width: 110%; aspect-ratio: 942 / 846; left: 0; top: -23px; }
+.world-layer { position: absolute; width: 100%; height: 100%; object-fit: contain; }
+.sprite { position: absolute; height: auto; }
+.sprite-runner { left: 22.72%; top: 0.83%; width: 18.47%; animation: runner-hop 4s ease-in-out infinite; }
+.sprite-robot { left: 36.3%; top: 18.91%; width: 9.24%; animation: coin-bob 5s ease-in-out infinite; }
+.sprite-camera { left: 56.05%; top: 14.78%; width: 8.39%; }
+.sprite-coins { left: 10.72%; top: 24.35%; width: 10.4%; animation: coin-bob 3s ease-in-out infinite; }
+.industries { position: absolute; right: -23px; top: 13px; padding-left: 14px; border-left: 1px solid var(--foreground); font-size: 10px; font-weight: 500; line-height: 2.1; z-index: 1; }
+.industries li { display: flex; gap: 8px; }
+.creative-tag { position: absolute; right: -19px; top: 540px; border-left: 1px solid var(--foreground); padding: 15px; font-size: 12px; line-height: 1.6; }
+.pixel-spark { position: absolute; color: var(--brand-cyan); font-size: 18px; }
+.spark-one { top: 135px; left: 2.5%; }
+.spark-two { bottom: 70px; left: 0; color: var(--brand-lavender); }
+@keyframes loading-sweep { from { background-position-x: 0; } to { background-position-x: -88px; } }
+@keyframes loading-sparkle { 0%,18%,52%,76%,100% { opacity: 0; } 16%,50%,74% { opacity: 0.7; } }
+@keyframes runner-hop { 0%,100% { transform: translate(0,0); } 50% { transform: translate(7px,-8px); } }
+@keyframes coin-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@media (min-width: 1450px) { .coming-title { font-size: 108px; } .supporting-copy { font-size: 14px; } .event-scale { font-size: 18px; } .creative-tag { top: 610px; } }
+@media (min-width: 1024px) and (max-width: 1199px) { .coming-title { font-size: 79px; } .event-scale { font-size: 12px; gap: 7px; } .event-scale strong { font-size: 21px; } .event-location { font-size: 9px; gap: 8px; } .event-location svg { width: 14px; } .creative-tag { top: 485px; } }
+@media (max-width: 1023px) { .festival-page { padding: 23px 4% 28px; } .festival-header { margin-bottom: 32px; } .festival-main { grid-template-columns: minmax(0,49%) minmax(0,51%); } .coming-title { font-size: 54px; } .story-tag { font-size: 12px; word-spacing: 4px; } .supporting-copy { font-size: 11px; } .desktop-break { display: none; } .event-scale { font-size: 11px; gap: 6px; } .event-scale strong { font-size: 20px; } .event-location { flex-wrap: wrap; row-gap: 5px; font-size: 9px; } .event-location .location-divider { display: none; } .industries { right: -12px; font-size: 9px; } .creative-tag { top: 460px; right: -10px; } .pixel-world { top: 42px; width: 119%; left: -3%; } .subscription { margin-top: 20px; } .subscribe-row { gap: 8px; } .subscribe-row button { padding: 0 10px; font-size: 11px; } .social-footer { gap: 13px; } .social-footer > span { padding-right: 13px; } .social-footer ul { gap: 8px; } }
+@media (max-width: 767px) { .festival-page { padding: 22px 22px 30px; } .official-logo { width: 130px; } .brand-lockup { flex-direction: column; align-items: start; gap: 8px; } .brand-descriptor { font-size: 8px; } .event-header { font-size: 9px; padding: 5px 6px; } .festival-header { margin-bottom: 30px; } .festival-main { display: flex; flex-direction: column; } .coming-title { font-size: 46px; margin-bottom: 22px; } .story-tag { font-size: 11px; margin-bottom: 18px; } .loading-block { width: 78%; } .supporting-copy { font-size: 11px; margin-top: 13px; } .event-scale { font-size: 10px; gap: 6px; } .event-scale strong { font-size: 20px; } .event-location { font-size: 9px; margin-top: 8px; margin-bottom: 18px; } .event-location svg { width: 16px; height: 16px; } .timer-panel { padding-top: 14px; padding-bottom: 12px; } .timer-panel > div:first-child { font-size: 22px; } .subscription { margin-top: 21px; } .subscribe-row button { padding: 0 13px; font-size: 11px; } .social-footer { margin-top: 18px; } .game-art { width: calc(100% + 28px); margin: 24px -14px -25px; aspect-ratio: 942 / 920; } .pixel-world { width: 100%; left: 0; top: 27px; } .industries { right: 4px; top: 0; font-size: 8px; padding-left: 8px; } .creative-tag { right: 0; top: auto; bottom: 30px; font-size: 9px; padding: 8px; } .spark-one { top: 156px; left: 7px; } }
+@media (max-width: 359px) { .festival-page { padding-left: 16px; padding-right: 16px; } .coming-title { font-size: 40px; } .event-scale { font-size: 9px; gap: 5px; } .event-scale strong { font-size: 17px; } .social-footer { gap: 9px; } .social-footer > span { padding-right: 9px; } .social-footer ul { gap: 6px; } }
+@media (min-width: 768px) and (max-width: 1023px) { .coming-title { font-size: 80px; } }
+@media (min-width: 360px) and (max-width: 767px) { .coming-title { font-size: 64px; } }
+@media (max-width: 359px) { .coming-title { font-size: 53px; } }
+@media (min-width: 1200px) and (max-width: 1449px) {
+  .festival-header { margin-bottom: 20px; }
+  .coming-title { font-size: 90px; margin-bottom: 16px; }
+  .story-tag { margin-bottom: 13px; }
+  .event-location { margin-bottom: 17px; }
+  .timer-panel { padding-top: 10px; padding-bottom: 9px; }
+  .subscription { margin-top: 17px; }
+  .social-footer { margin-top: 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
+  .loading-fill::before { opacity: 0.35; filter: none; }
+  .loading-fill::after { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
