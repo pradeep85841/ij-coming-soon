@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, MapPin, Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
-import charminar from "@/assets/charminar.jpg";
-import collage from "@/assets/collage.jpg";
+import hero from "@/assets/indiajoy-hero.png";
 import { Countdown } from "@/components/Countdown";
 import { SubscribeForm } from "@/components/SubscribeForm";
 
@@ -89,21 +88,19 @@ function Index() {
         </section>
 
         {/* Right collage */}
-        <section aria-label="The IndiaJoy creative universe" className="animate-rise relative flex gap-4 [animation-delay:200ms] lg:gap-6">
-          <div className="relative min-h-[420px] flex-1 sm:min-h-[560px]">
-            <div className="absolute inset-y-0 left-0 w-[72%] overflow-hidden border border-foreground bg-card">
-              <img src={charminar} alt="Charminar, Hyderabad" width={896} height={1152} className="h-full w-full object-cover object-top grayscale" />
-            </div>
-            <div className="absolute bottom-6 right-0 w-[58%] border border-foreground bg-card shadow-none">
-              <img src={collage} alt="Film, VR, gaming, comics and animation collage" width={1024} height={1024} loading="lazy" className="block aspect-square w-full object-cover mix-blend-multiply" />
-            </div>
-            <div className="animate-drift absolute right-[8%] top-[6%] size-16 rounded-full bg-brand-red sm:size-24" aria-hidden />
-            <div className="animate-drift absolute left-[64%] top-[38%] size-10 border-2 border-brand-cyan [animation-delay:-3s]" aria-hidden />
-            <div className="absolute -left-2 bottom-[18%] size-0 border-x-[22px] border-b-[38px] border-x-transparent border-b-brand-lavender" aria-hidden />
-            <span className="font-mono-brand absolute left-3 top-3 bg-background px-2 py-1 text-[10px] uppercase tracking-[0.2em]">
+        <section aria-label="The IndiaJoy creative universe" className="animate-rise flex items-center gap-4 [animation-delay:200ms] lg:gap-6">
+          <figure className="relative flex-1 self-center border border-foreground bg-card">
+            <img
+              src={hero}
+              alt="The Charminar in Hyderabad surrounded by film, gaming, virtual reality, animation and comics artwork"
+              width={964}
+              height={868}
+              className="block h-auto w-full"
+            />
+            <figcaption className="font-mono-brand absolute left-3 top-3 bg-background/85 px-2 py-1 text-[10px] uppercase tracking-[0.2em]">
               17.3616° N, 78.4747° E
-            </span>
-          </div>
+            </figcaption>
+          </figure>
           <ul className="font-mono-brand hidden flex-col justify-center gap-4 border-l border-foreground pl-4 text-xs uppercase tracking-[0.3em] sm:flex">
             {industries.map((i, n) => (
               <li key={i} className={n === industries.length - 1 ? "text-brand-red" : ""}>{i}</li>
