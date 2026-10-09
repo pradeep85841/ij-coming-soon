@@ -51,7 +51,7 @@ function Index() {
             Asia's biggest digital entertainment festival
           </span>
         </div>
-        <div className="font-mono-brand text-right text-[10px] uppercase leading-snug tracking-[0.15em] sm:text-xs">
+        <div className="font-mono-brand text-left text-[10px] uppercase leading-snug tracking-[0.15em] sm:text-right sm:text-xs">
           <div className="font-medium">Dec 7–13, 2026</div>
           <div className="text-muted-foreground">Bharat Future City, Hyderabad, India</div>
         </div>
@@ -59,7 +59,7 @@ function Index() {
 
       <main className="flex flex-1 flex-col gap-12 py-10 lg:gap-16 lg:py-14">
         {/* Hero: headline + artwork */}
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
           <section className="animate-rise flex min-w-0 flex-col gap-6">
             <p className="font-mono-brand text-xs uppercase tracking-[0.35em] text-brand-red">Stories · Games · Dreams</p>
             <h1 className="font-display text-[clamp(3.5rem,9.5vw,8rem)] uppercase leading-[0.85] tracking-tight">
