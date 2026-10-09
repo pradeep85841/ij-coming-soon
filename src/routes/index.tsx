@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, MapPin, Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
-import charminar from "@/assets/charminar.jpg";
-import collage from "@/assets/collage.jpg";
+import hero from "@/assets/indiajoy-hero.png";
 import { Countdown } from "@/components/Countdown";
 import { SubscribeForm } from "@/components/SubscribeForm";
 
@@ -52,30 +51,56 @@ function Index() {
             Asia's biggest digital entertainment festival
           </span>
         </div>
-        <div className="font-mono-brand text-right text-[10px] uppercase leading-snug tracking-[0.15em] sm:text-xs">
+        <div className="font-mono-brand text-left text-[10px] uppercase leading-snug tracking-[0.15em] sm:text-right sm:text-xs">
           <div className="font-medium">Dec 7–13, 2026</div>
           <div className="text-muted-foreground">Bharat Future City, Hyderabad, India</div>
         </div>
       </header>
 
-      <main className="grid flex-1 gap-10 py-10 lg:grid-cols-[1fr_1.1fr] lg:gap-12 lg:py-14">
-        {/* Left */}
-        <section className="animate-rise flex flex-col gap-7">
-          <p className="font-mono-brand text-xs uppercase tracking-[0.35em] text-brand-red">Stories · Games · Dreams</p>
-          <h1 className="font-display text-[clamp(4.5rem,13vw,11rem)] uppercase leading-[0.85] tracking-tight">
-            Coming
-            <br />
-            Soon<span className="text-brand-red">.</span>
-          </h1>
-          <p className="max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            We're working on something extraordinary. The official IndiaJoy 2026 website will be live soon. Stay tuned
-            for updates, announcements and more.
-          </p>
-          <p className="font-display text-xl uppercase sm:text-2xl lg:whitespace-nowrap">
-            <span className="text-brand-red">1</span> Venue – <span className="text-brand-cyan">7</span> Days –{" "}
-            <span className="text-brand-lavender">10</span> Events
-          </p>
-          <div className="font-mono-brand flex flex-wrap gap-x-6 gap-y-3 border-y border-foreground/30 py-3 text-xs uppercase tracking-[0.15em]">
+      <main className="flex flex-1 flex-col gap-12 py-10 lg:gap-16 lg:py-14">
+        {/* Hero: headline + artwork */}
+        <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+          <section className="animate-rise flex min-w-0 flex-col gap-6">
+            <p className="font-mono-brand text-xs uppercase tracking-[0.35em] text-brand-red">Stories · Games · Dreams</p>
+            <h1 className="font-display text-[clamp(3.5rem,9.5vw,8rem)] uppercase leading-[0.85] tracking-tight">
+              Coming
+              <br />
+              Soon<span className="text-brand-red">.</span>
+            </h1>
+            <p className="max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+              We're working on something extraordinary. The official IndiaJoy 2026 website will be live soon. Stay tuned
+              for updates, announcements and more.
+            </p>
+            <p className="font-display text-xl uppercase sm:text-2xl">
+              <span className="text-brand-red">1</span> Venue – <span className="text-brand-cyan">7</span> Days –{" "}
+              <span className="text-brand-lavender">10</span> Events
+            </p>
+          </section>
+
+          <section aria-label="The IndiaJoy creative universe" className="animate-rise flex min-w-0 flex-col gap-4 [animation-delay:200ms]">
+            <figure className="relative border border-foreground bg-card">
+              <img
+                src={hero}
+                alt="The Charminar in Hyderabad surrounded by film, gaming, virtual reality, animation and comics artwork"
+                width={964}
+                height={868}
+                className="block h-auto w-full"
+              />
+              <figcaption className="font-mono-brand absolute left-3 top-3 bg-background/85 px-2 py-1 text-[10px] uppercase tracking-[0.2em]">
+                17.3616° N, 78.4747° E
+              </figcaption>
+            </figure>
+            <ul className="font-mono-brand flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-foreground pt-3 text-[11px] uppercase tracking-[0.25em] sm:text-xs">
+              {industries.map((i, n) => (
+                <li key={i} className={n === industries.length - 1 ? "text-brand-red" : ""}>{i}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        {/* Band: dates, countdown, sign-up */}
+        <section className="animate-rise border-t border-foreground pt-8 [animation-delay:150ms]">
+          <div className="font-mono-brand flex flex-wrap gap-x-6 gap-y-3 text-xs uppercase tracking-[0.15em]">
             <span className="flex items-center gap-2">
               <Calendar className="size-4" strokeWidth={1.5} aria-hidden /> Dec 7–13, 2026
             </span>
@@ -84,31 +109,10 @@ function Index() {
               <MapPin className="size-4" strokeWidth={1.5} aria-hidden /> Bharat Future City, Hyderabad
             </span>
           </div>
-          <Countdown />
-          <SubscribeForm />
-        </section>
-
-        {/* Right collage */}
-        <section aria-label="The IndiaJoy creative universe" className="animate-rise relative flex gap-4 [animation-delay:200ms] lg:gap-6">
-          <div className="relative min-h-[420px] flex-1 sm:min-h-[560px]">
-            <div className="absolute inset-y-0 left-0 w-[72%] overflow-hidden border border-foreground bg-card">
-              <img src={charminar} alt="Charminar, Hyderabad" width={896} height={1152} className="h-full w-full object-cover object-top grayscale" />
-            </div>
-            <div className="absolute bottom-6 right-0 w-[58%] border border-foreground bg-card shadow-none">
-              <img src={collage} alt="Film, VR, gaming, comics and animation collage" width={1024} height={1024} loading="lazy" className="block aspect-square w-full object-cover mix-blend-multiply" />
-            </div>
-            <div className="animate-drift absolute right-[8%] top-[6%] size-16 rounded-full bg-brand-red sm:size-24" aria-hidden />
-            <div className="animate-drift absolute left-[64%] top-[38%] size-10 border-2 border-brand-cyan [animation-delay:-3s]" aria-hidden />
-            <div className="absolute -left-2 bottom-[18%] size-0 border-x-[22px] border-b-[38px] border-x-transparent border-b-brand-lavender" aria-hidden />
-            <span className="font-mono-brand absolute left-3 top-3 bg-background px-2 py-1 text-[10px] uppercase tracking-[0.2em]">
-              17.3616° N, 78.4747° E
-            </span>
+          <div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+            <Countdown />
+            <SubscribeForm />
           </div>
-          <ul className="font-mono-brand hidden flex-col justify-center gap-4 border-l border-foreground pl-4 text-xs uppercase tracking-[0.3em] sm:flex">
-            {industries.map((i, n) => (
-              <li key={i} className={n === industries.length - 1 ? "text-brand-red" : ""}>{i}</li>
-            ))}
-          </ul>
         </section>
       </main>
 
