@@ -153,7 +153,29 @@
 .coming-title span { display: block; }
 .loading-block { width: 70%; margin-bottom: 12px; }
 .loading-track { height: 20px; border: 3px solid var(--foreground); padding: 2px; margin-bottom: 3px; clip-path: polygon(4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px),0 4px); }
-.loading-fill { width: 58%; height: 100%; background: repeating-linear-gradient(90deg, transparent 0 9px, var(--foreground) 9px 11px),linear-gradient(90deg,var(--brand-red),var(--brand-lavender),var(--brand-cyan)); background-size: auto,200% 100%; animation: loading-shimmer 6s ease-in-out infinite; }
+.loading-fill {
+  --loading-blue: oklch(0.61 0.22 260);
+  --loading-magenta: oklch(0.65 0.25 335);
+  --loading-highlight: oklch(0.98 0.03 200);
+  --loading-glow: color-mix(in oklch, var(--loading-highlight) 40%, transparent);
+  position: relative; width: 58%; height: 100%; overflow: hidden;
+  background-image: repeating-linear-gradient(90deg, transparent 0 9px, var(--foreground) 9px 11px), repeating-linear-gradient(90deg, var(--brand-cyan) 0 22px, var(--loading-blue) 22px 44px, var(--brand-violet) 44px 66px, var(--loading-magenta) 66px 88px);
+  background-size: 11px 100%, 88px 100%;
+  animation: loading-sweep 2.5s linear infinite;
+}
+.loading-fill::before {
+  content: ''; position: absolute; top: 1px; bottom: 1px; left: 0; width: 100%;
+  background: repeating-linear-gradient(90deg, transparent 0 84px, var(--loading-highlight) 84px 88px);
+  background-size: 88px 100%; opacity: 0.8;
+  filter: drop-shadow(4px 0 1px var(--loading-glow));
+  animation: loading-sweep 2.5s linear infinite;
+}
+.loading-fill::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 80px, var(--loading-highlight) 80px 82px, transparent 82px 88px);
+  background-size: 88px 2px; background-repeat: repeat-x; opacity: 0;
+  animation: loading-sweep 2.5s linear infinite, loading-sparkle 2.5s steps(1, end) infinite;
+}
 .supporting-copy { font-size: 12px; line-height: 1.55; margin-bottom: 12px; }
 .event-scale { display: flex; align-items: baseline; gap: 9px; white-space: nowrap; font-family: var(--font-display); font-size: 16px; line-height: 1.7; margin-bottom: 4px; }
 .event-scale strong { font-size: 24px; font-weight: 400; }
@@ -188,7 +210,8 @@
 .pixel-spark { position: absolute; color: var(--brand-cyan); font-size: 18px; }
 .spark-one { top: 135px; left: 2.5%; }
 .spark-two { bottom: 70px; left: 0; color: var(--brand-lavender); }
-@keyframes loading-shimmer { 0%,100% { background-position: 0 0,0 0; } 50% { background-position: 0 0,100% 0; } }
+@keyframes loading-sweep { from { background-position-x: 0; } to { background-position-x: -88px; } }
+@keyframes loading-sparkle { 0%,18%,52%,76%,100% { opacity: 0; } 16%,50%,74% { opacity: 0.7; } }
 @keyframes runner-hop { 0%,100% { transform: translate(0,0); } 50% { transform: translate(7px,-8px); } }
 @keyframes coin-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 @media (min-width: 1450px) { .coming-title { font-size: 108px; } .supporting-copy { font-size: 14px; } .event-scale { font-size: 18px; } .creative-tag { top: 610px; } }
@@ -209,5 +232,7 @@
   .social-footer { margin-top: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .loading-fill::before { opacity: 0.35; filter: none; }
+  .loading-fill::after { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
