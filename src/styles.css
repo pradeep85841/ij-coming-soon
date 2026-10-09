@@ -199,10 +199,11 @@
 .game-art { position: relative; min-width: 0; }
 .pixel-world { position: absolute; width: 110%; aspect-ratio: 942 / 846; left: 0; top: -23px; }
 .world-layer { position: absolute; width: 100%; height: 100%; object-fit: contain; }
-.sprite { position: absolute; height: auto; }
+.pixel-world img { image-rendering: pixelated; image-rendering: crisp-edges; }
+.sprite { position: absolute; height: auto; will-change: transform; }
 .sprite-runner { left: 22.72%; top: 0.83%; width: 18.47%; animation: runner-hop 4s ease-in-out infinite; }
 .sprite-robot { left: 36.3%; top: 18.91%; width: 9.24%; animation: coin-bob 5s ease-in-out infinite; }
-.sprite-camera { left: 56.05%; top: 14.78%; width: 8.39%; }
+.sprite-camera { left: 56.05%; top: 14.78%; width: 8.39%; animation: coin-bob 6s ease-in-out infinite 1s; }
 .sprite-coins { left: 10.72%; top: 24.35%; width: 10.4%; animation: coin-bob 3s ease-in-out infinite; }
 .industries { position: absolute; right: -23px; top: 13px; padding-left: 14px; border-left: 1px solid var(--foreground); font-size: 10px; font-weight: 500; line-height: 2.1; z-index: 1; }
 .industries li { display: flex; gap: 8px; }
@@ -236,3 +237,4 @@
   .loading-fill::after { display: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+@media (prefers-reduced-motion: reduce) { .pixel-world .sprite { animation: none !important; } }
