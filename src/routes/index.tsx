@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CalendarDays, MapPin, Instagram, Linkedin, Youtube, Facebook } from "lucide-react";
-import logo from "@/assets/indiajoy-logo.webp.asset.json";
+import logo from "@/assets/indiajoy-logo.webp";
 import { Countdown } from "@/components/Countdown";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { PixelWorld } from "@/components/PixelWorld";
@@ -31,7 +31,7 @@ function Index() {
   return <div className="festival-page">
     <header className="festival-header grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
       <div className="brand-lockup flex min-w-0 items-center gap-5">
-        <img src={logo.url} alt="IndiaJoy" className="official-logo shrink-0" width={1920} height={584} />
+        <img src={logo} alt="IndiaJoy" className="official-logo shrink-0" width={1920} height={584} />
         <p className="brand-descriptor">ASIA'S BIGGEST<br />DIGITAL ENTERTAINMENT<br />FESTIVAL</p>
       </div>
       <div className="event-header font-mono-brand text-xs font-bold uppercase"><span>DEC 7–13, 2026</span><br />BHARAT FUTURE CITY<br />HYDERABAD, INDIA</div>
