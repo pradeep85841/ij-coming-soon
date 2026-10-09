@@ -199,6 +199,15 @@
 @media (min-width: 768px) and (max-width: 1023px) { .coming-title { font-size: 80px; } }
 @media (min-width: 360px) and (max-width: 767px) { .coming-title { font-size: 64px; } }
 @media (max-width: 359px) { .coming-title { font-size: 53px; } }
+@media (min-width: 1200px) and (max-width: 1449px) {
+  .festival-header { margin-bottom: 20px; }
+  .coming-title { font-size: 90px; margin-bottom: 16px; }
+  .story-tag { margin-bottom: 13px; }
+  .event-location { margin-bottom: 17px; }
+  .timer-panel { padding-top: 10px; padding-bottom: 9px; }
+  .subscription { margin-top: 17px; }
+  .social-footer { margin-top: 14px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
